@@ -5,10 +5,10 @@
       <div class="panel-body">
         <div class="media">
           <div class="media-left">
-            <img src="{{.CurrentUserInfo.Avatar}}" class="avatar-lg" alt="{{.CurrentUserInfo.Username}}">
+            <img src="{{.CurrentUserInfo.Avatar}}" class="avatar-lg" alt="{{.CurrentUserInfo.Nickname}}">
           </div>
           <div class="media-body">
-            <h3 style="margin-top: 0">{{.CurrentUserInfo.Username}}</h3>
+            <h3 style="margin-top: 0">{{.CurrentUserInfo.Nickname}}</h3>
             {{if .CurrentUserInfo.Signature}}<p><i class="gray">{{.CurrentUserInfo.Signature}}</i></p>{{end}}
             {{if .CurrentUserInfo.Url}}
             <div>主页: <a href="{{.CurrentUserInfo.Url}}" target="_blank">{{.CurrentUserInfo.Url}}</a></div>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading">{{.CurrentUserInfo.Username}}创建的话题</div>
+      <div class="panel-heading">{{.CurrentUserInfo.Nickname}}创建的话题</div>
       <div class="panel-body">
         {{range .Topics}}
         <div class="media">
@@ -30,7 +30,7 @@
             <p>
               <a href="/?tab={{.Section.Id}}">{{.Section.Name}}</a>
               <span>•</span>
-              <span><a href="/user/{{.User.Username}}">{{.User.Username}}</a></span>
+              <span><a href="/user/{{.User.Username}}">{{.User.Nickname}}</a></span>
               <span class="hidden-sm hidden-xs">•</span>
               <span class="hidden-sm hidden-xs">{{.ReplyCount}}个回复</span>
               <span class="hidden-sm hidden-xs">•</span>
@@ -39,7 +39,7 @@
               <span>{{.InTime | timeago}}</span>
               {{if .LastReplyUser}}
                 <span>•</span>
-                <span>最后回复来自 <a href="/user/{{.LastReplyUser.Username}}">{{.LastReplyUser.Username}}</a></span>
+                <span>最后回复来自 <a href="/user/{{.LastReplyUser.Username}}">{{.LastReplyUser.Nickname}}</a></span>
               {{end}}
             </p>
           </div>
@@ -48,11 +48,11 @@
         {{end}}
       </div>
       <div class="panel-footer">
-        <a href="/user/{{.CurrentUserInfo.Username}}/topics">{{.CurrentUserInfo.Username}}更多话题&gt;&gt;</a>
+        <a href="/user/{{.CurrentUserInfo.Username}}/topics">{{.CurrentUserInfo.Nickname}}的更多话题&gt;&gt;</a>
       </div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading">{{.CurrentUserInfo.Username}}回复的话题</div>
+      <div class="panel-heading">{{.CurrentUserInfo.Nickname}}回复的话题</div>
       <table class="table table-striped">
         <tbody>
         {{range .Replies}}
@@ -60,7 +60,7 @@
           <td>
             {{.InTime | timeago}}
             回复了
-            <a href="/user/{{.User.Username}}">{{.User.Username}}</a>
+            <a href="/user/{{.User.Username}}">{{.User.Nickname}}</a>
             创建的话题 › <a href="/topic/{{.Topic.Id}}">{{.Topic.Title}}</a>
           </td>
         </tr>
@@ -71,7 +71,7 @@
         </tbody>
       </table>
       <div class="panel-footer">
-        <a href="/user/{{.CurrentUserInfo.Username}}/replies">{{.CurrentUserInfo.Username}}更多回复&gt;&gt;</a>
+        <a href="/user/{{.CurrentUserInfo.Username}}/replies">{{.CurrentUserInfo.Nickname}}的更多回复&gt;&gt;</a>
       </div>
     </div>
     {{else}}

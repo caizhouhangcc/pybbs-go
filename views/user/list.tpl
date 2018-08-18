@@ -11,7 +11,7 @@
           {{range .Page.List}}
           <tr>
             <td>{{.Id}}</td>
-            <td><a href="/user/{{.Username}}" target="_blank">{{.Username}}</a></td>
+            <td><a href="/user/{{.Username}}" target="_blank">{{.Nickname}}</a></td>
             <td>{{if .Url}}<a href="{{.Url}}" target="_blank">{{.Url}}</a>{{end}}</td>
             <td>
               <a href="/user/edit/{{.Id}}" class="btn btn-xs btn-warning">配置角色</a>
