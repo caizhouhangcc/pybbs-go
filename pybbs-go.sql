@@ -133,9 +133,7 @@ LOCK TABLES `section` WRITE;
 INSERT INTO `section` (`id`, `name`)
 VALUES
 	(1,'分享'),
-	(3,'博客'),
-	(4,'招聘'),
-	(2,'问答');
+	(2,'经验');
 
 /*!40000 ALTER TABLE `section` ENABLE KEYS */;
 UNLOCK TABLES;

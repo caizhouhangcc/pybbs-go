@@ -66,7 +66,7 @@
 <div class="container">
   <br>
   <div class="text-center">
-    ©2018 <a href="https://wheresmile.com" target="_blank">WhereSmile</a>
+    ©2018 Powered by <a href="https://yiiu.co" target="_blank">朋也社区</a>
   </div>
   <br>
 </div>
