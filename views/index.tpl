@@ -49,7 +49,7 @@
     {{else}}
       {{template "components/welcome.tpl" .}}
     {{end}}
-    {{template "components/otherbbs.tpl" .}}
+    {{template "components/friendlinks.tpl" .}}
   </div>
 </div>
 <script type="text/javascript" src="/static/js/bootstrap-paginator.min.js"></script>

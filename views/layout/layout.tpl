@@ -23,7 +23,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" style="color:#fff;" href="/">朋也社区GO</a>
+        <a class="navbar-brand" style="color:#fff;" href="/">WhereSmile</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse header-navbar">
         <ul class="nav navbar-nav navbar-right">
@@ -66,7 +66,7 @@
 <div class="container">
   <br>
   <div class="text-center">
-    ©2016 Powered by <a href="https://bbs.tomoya.cn" target="_blank">朋也社区</a>
+    ©2018 <a href="https://wheresmile.com" target="_blank">WhereSmile</a>
   </div>
   <br>
 </div>
