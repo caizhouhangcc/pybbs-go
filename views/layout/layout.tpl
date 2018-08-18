@@ -33,7 +33,7 @@
           {{if .IsLogin}}
           <li>
             <a href="/user/{{.UserInfo.Username}}">
-              {{.UserInfo.Username}}
+              {{.UserInfo.Nickname}}
             </a>
           </li>
           <li>

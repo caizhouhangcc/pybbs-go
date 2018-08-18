@@ -13,7 +13,7 @@
         {{range .Page.List}}
         <div class="media">
           <div class="media-left">
-            <a href="/user/{{.User.Username}}"><img src="{{.User.Avatar}}" class="avatar" alt="{{.User.Username}}"></a>
+            <a href="/user/{{.User.Username}}"><img src="{{.User.Avatar}}" class="avatar" alt="{{.User.Nickname}}"></a>
           </div>
           <div class="media-body">
             <div class="title">
@@ -22,7 +22,7 @@
             <p class="gray">
               <span class="label label-primary">{{.Section.Name}}</span>
               <span>•</span>
-              <span><a href="/user/{{.User.Username}}">{{.User.Username}}</a></span>
+              <span><a href="/user/{{.User.Username}}">{{.User.Nickname}}</a></span>
               <span class="hidden-sm hidden-xs">•</span>
               <span class="hidden-sm hidden-xs">{{.ReplyCount}}个回复</span>
               <span class="hidden-sm hidden-xs">•</span>
@@ -31,7 +31,7 @@
               <span>{{.InTime | timeago}}</span>
               {{if .LastReplyUser}}
                 <span>•</span>
-                <span>最后回复来自 <a href="/user/{{.LastReplyUser.Username}}">{{.LastReplyUser.Username}}</a></span>
+                <span>最后回复来自 <a href="/user/{{.LastReplyUser.Username}}">{{.LastReplyUser.Nickname}}</a></span>
               {{end}}
             </p>
           </div>

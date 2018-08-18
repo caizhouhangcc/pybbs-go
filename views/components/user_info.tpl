@@ -6,12 +6,12 @@
     <div class="media">
       <div class="media-left">
         <a href="/user/{{.UserInfo.Username}}">
-          <img src="{{.UserInfo.Avatar}}" title="{{.UserInfo.Username}}" class="avatar">
+          <img src="{{.UserInfo.Avatar}}" title="{{.UserInfo.Nickname}}" class="avatar">
         </a>
       </div>
       <div class="media-body">
         <div class="media-heading">
-          <a href="/user/{{.UserInfo.Username}}">{{.UserInfo.Username}}</a>
+          <a href="/user/{{.UserInfo.Username}}">{{.UserInfo.Nickname}}</a>
         </div>
         {{if .UserInfo.Url}}<a href="{{.UserInfo.Url}}" target="_blank">{{.UserInfo.Url}}</a>{{end}}
       </div>

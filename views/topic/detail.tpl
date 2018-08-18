@@ -8,7 +8,7 @@
             <p class="gray">
               <span class="label label-primary">{{.Topic.Section.Name}}</span>
               <span>•</span>
-              <span><a href="/user/{{.Topic.User.Username}}">{{.Topic.User.Username}}</a></span>
+              <span><a href="/user/{{.Topic.User.Username}}">{{.Topic.User.Nickname}}</a></span>
               <span>•</span>
               <span>{{.Topic.InTime | timeago}}</span>
               <span>•</span>
@@ -26,7 +26,7 @@
             </p>
           </div>
           <div class="media-right">
-            <img src="{{.Topic.User.Avatar}}" alt="{{.Topic.User.Username}}" class="avatar-lg">
+            <img src="{{.Topic.User.Avatar}}" alt="{{.Topic.User.Nickname}}" class="avatar-lg">
           </div>
         </div>
       </div>
@@ -46,11 +46,11 @@
         {{range .Replies}}
         <div class="media">
           <div class="media-left">
-            <a href="/user/{{.User.Username}}"><img src="{{.User.Avatar}}" class="avatar" alt="{{.User.Username}}"></a>
+            <a href="/user/{{.User.Username}}"><img src="{{.User.Avatar}}" class="avatar" alt="{{.User.Nickname}}"></a>
           </div>
           <div class="media-body reply-content">
             <div class="media-heading gray">
-              <a href="/user/{{.User.Username}}">{{.User.Username}} </a>
+              <a href="/user/{{.User.Username}}">{{.User.Nickname}} </a>
               <span>{{.InTime | timeago}}</span>
               <span class="pull-right">
                 {{if haspermission $.UserInfo.Id "reply:delete"}}<a href="javascript:if(confirm('确定删除吗?')) location.href='/reply/delete/{{.Id}}'">删除</a>{{end}}
