@@ -32,5 +32,8 @@ func main() {
 	//orm.Debug = true
 	//ok, err := regexp.MatchString("/topic/edit/[0-9]+", "/topic/edit/123")
 	//beego.Debug(ok, err)
+	beego.SetLogger("file", `{"filename":"logs/staging.log"}`)
+	beego.BeeLogger.DelLogger("console")
+
 	beego.Run()
 }

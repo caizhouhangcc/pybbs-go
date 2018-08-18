@@ -1,2 +1,5 @@
 .idea
 pybbs-go
+
+/logs/*
+!logs/.keep
