@@ -1,11 +1,12 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
-	"github.com/sluu99/uuid"
 	"pybbs-go/filters"
 	"pybbs-go/models"
 	"strconv"
+
+	"github.com/astaxie/beego"
+	"github.com/sluu99/uuid"
 )
 
 type IndexController struct {
@@ -75,9 +76,13 @@ func (c *IndexController) RegisterPage() {
 //验证注册
 func (c *IndexController) Register() {
 	flash := beego.NewFlash()
-	username, password := c.Input().Get("username"), c.Input().Get("password")
-	if len(username) == 0 || len(password) == 0 {
-		flash.Error("用户名或密码不能为空")
+
+	username := c.Input().Get("username")
+	nickname := c.Input().Get("nickname")
+	password := c.Input().Get("password")
+
+	if len(username) == 0 || len(nickname) == 0 || len(password) == 0 {
+		flash.Error("用户名、昵称或密码不能为空")
 		flash.Store(&c.Controller)
 		c.Redirect("/register", 302)
 	} else if flag, _ := models.FindUserByUserName(username); flag {
@@ -86,7 +91,12 @@ func (c *IndexController) Register() {
 		c.Redirect("/register", 302)
 	} else {
 		var token = uuid.Rand().Hex()
-		user := models.User{Username: username, Password: password, Avatar: "/static/imgs/avatar.png", Token: token}
+		user := models.User{
+			Username: username,
+			Nickname: nickname,
+			Password: password,
+			Avatar:   "/static/imgs/avatar.png",
+			Token:    token}
 		models.SaveUser(&user)
 		// others are ordered as cookie's max age time, path,domain, secure and httponly.
 		c.SetSecureCookie(beego.AppConfig.String("cookie.secure"), beego.AppConfig.String("cookie.token"), token, 30*24*60*60, "/", beego.AppConfig.String("cookie.domain"), false, true)

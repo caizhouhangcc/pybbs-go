@@ -1,15 +1,17 @@
 package models
 
 import (
-	"github.com/astaxie/beego/orm"
 	"pybbs-go/utils"
 	"strconv"
 	"time"
+
+	"github.com/astaxie/beego/orm"
 )
 
 type User struct {
 	Id        int    `orm:"pk;auto"`
 	Username  string `orm:"unique"`
+	Nickname  string
 	Password  string
 	Token     string `orm:"unique"`
 	Avatar    string

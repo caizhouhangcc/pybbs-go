@@ -15,8 +15,12 @@
         {{template "../components/flash_error.tpl" .}}
         <form action="/user/setting" method="post">
           <div class="form-group">
-            <label for="username">昵称</label>
+            <label for="username">用户名</label>
             <input type="text" disabled="" class="form-control" id="username" value="{{.UserInfo.Username}}">
+          </div>
+          <div class="form-group">
+            <label for="nickname">昵称</label>
+            <input type="text" class="form-control" name="nickname" id="nickname" value="{{.UserInfo.Nickname}}">
           </div>
           <div class="form-group">
             <label for="email">邮箱</label>

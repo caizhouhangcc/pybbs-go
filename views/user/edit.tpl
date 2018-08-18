@@ -9,6 +9,10 @@
             <input type="text" disabled id="username" value="{{.User.Username}}" class="form-control">
           </div>
           <div class="form-group">
+            <label for="nickname">昵称</label>
+            <input type="text" id="nickname" value="{{.User.Nickname}}" class="form-control">
+          </div>
+          <div class="form-group">
             <label>角色</label>
             <div>
               {{range .Roles}}
