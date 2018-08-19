@@ -10,6 +10,16 @@
   <link rel="stylesheet" href="/static/css/pybbs.css">
   <script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
   <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124238025-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-124238025-1');
+  </script>
+
 </head>
 <body>
 <div class="wrapper">
