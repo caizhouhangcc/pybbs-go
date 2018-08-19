@@ -10,6 +10,7 @@ import (
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/utils/captcha"
 	"github.com/sluu99/uuid"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // verification code
@@ -125,11 +126,20 @@ func (c *IndexController) Register() {
 		flash.Store(&c.Controller)
 		c.Redirect("/register", 302)
 	} else {
+		// password
+		hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+		if err != nil {
+			flash.Error("密码有毒，请重试一遍=。=")
+			flash.Store(&c.Controller)
+			c.Redirect("/register", 302)
+			return
+		}
+
 		var token = uuid.Rand().Hex()
 		user := models.User{
 			Username: username,
 			Nickname: nickname,
-			Password: password,
+			Password: string(hash),
 			Avatar:   "/static/imgs/avatar.png",
 			Token:    token}
 		models.SaveUser(&user)
