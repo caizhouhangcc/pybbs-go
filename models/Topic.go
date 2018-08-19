@@ -1,10 +1,11 @@
 package models
 
 import (
-	"github.com/astaxie/beego/orm"
 	"pybbs-go/utils"
 	"strconv"
 	"time"
+
+	"github.com/astaxie/beego/orm"
 )
 
 type Topic struct {
@@ -18,6 +19,7 @@ type Topic struct {
 	ReplyCount    int       `orm:"default(0)"`
 	LastReplyUser *User     `orm:"rel(fk);null"`
 	LastReplyTime time.Time `orm:"auto_now_add;type(datetime)"`
+	Tags          []*Tag    `orm:"rel(m2m)"` // ManyToMany relation
 }
 
 func SaveTopic(topic *Topic) int64 {
