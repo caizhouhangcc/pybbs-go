@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
 	"pybbs-go/filters"
 	"pybbs-go/models"
 	"strconv"
+
+	"github.com/astaxie/beego"
 )
 
 type RoleController struct {
@@ -12,7 +13,7 @@ type RoleController struct {
 }
 
 func (c *RoleController) List() {
-	c.Data["PageTitle"] = "角色列表"
+	c.Data["PageTitle"] = "角色列表 | WhereSmile"
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Ctx)
 	c.Data["Roles"] = models.FindRoles()
 	c.Layout = "layout/layout.tpl"
@@ -21,7 +22,7 @@ func (c *RoleController) List() {
 
 func (c *RoleController) Add() {
 	beego.ReadFromRequest(&c.Controller)
-	c.Data["PageTitle"] = "添加角色"
+	c.Data["PageTitle"] = "添加角色 | WhereSmile"
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Ctx)
 	permissions := models.FindPermissionsByPid(0)
 	for _, p := range permissions {
@@ -53,7 +54,7 @@ func (c *RoleController) Save() {
 
 func (c *RoleController) Edit() {
 	beego.ReadFromRequest(&c.Controller)
-	c.Data["PageTitle"] = "编辑角色"
+	c.Data["PageTitle"] = "编辑角色 | WhereSmile"
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Ctx)
 	id, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	if id > 0 {
