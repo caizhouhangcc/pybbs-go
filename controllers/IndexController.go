@@ -6,8 +6,20 @@ import (
 	"strconv"
 
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/cache"
+	"github.com/astaxie/beego/logs"
+	"github.com/astaxie/beego/utils/captcha"
 	"github.com/sluu99/uuid"
 )
+
+// verification code
+var cpt *captcha.Captcha
+
+func init() {
+	// use beego cache system store the captcha data
+	store := cache.NewMemoryCache()
+	cpt = captcha.NewWithFilter("/captcha/", store)
+}
 
 type IndexController struct {
 	beego.Controller
@@ -49,6 +61,18 @@ func (c *IndexController) LoginPage() {
 //验证登录
 func (c *IndexController) Login() {
 	flash := beego.NewFlash()
+
+	// verify code
+	verify := cpt.VerifyReq(c.Ctx.Request)
+	logs.Debug("verify: ", verify)
+	if !verify {
+		c.Data["Success"] = verify
+		flash.Error("验证码错误")
+		flash.Store(&c.Controller)
+		c.Redirect("/login", 302)
+		return
+	}
+
 	username, password := c.Input().Get("username"), c.Input().Get("password")
 	if flag, user := models.Login(username, password); flag {
 		c.SetSecureCookie(beego.AppConfig.String("cookie.secure"), beego.AppConfig.String("cookie.token"), user.Token, 30*24*60*60, "/", beego.AppConfig.String("cookie.domain"), false, true)
@@ -76,6 +100,17 @@ func (c *IndexController) RegisterPage() {
 //验证注册
 func (c *IndexController) Register() {
 	flash := beego.NewFlash()
+
+	// verify code
+	verify := cpt.VerifyReq(c.Ctx.Request)
+	logs.Debug("verify: ", verify)
+	if !verify {
+		c.Data["Success"] = verify
+		flash.Error("验证码错误")
+		flash.Store(&c.Controller)
+		c.Redirect("/register", 302)
+		return
+	}
 
 	username := c.Input().Get("username")
 	nickname := c.Input().Get("nickname")

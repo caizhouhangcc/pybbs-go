@@ -4,6 +4,7 @@
       <div class="panel-heading">登录</div>
       <div class="panel-body">
         {{template "components/flash_error.tpl" .}}
+        {{.Success}}
         <form action="/login" method="post">
           <div class="form-group">
             <label for="username">用户名</label>
@@ -12,6 +13,11 @@
           <div class="form-group">
             <label for="password">密码</label>
             <input type="password" id="password" name="password" class="form-control" placeholder="密码">
+          </div>
+          <div class="form-group">
+            <label for="captcha">验证码</label><br/>
+            <input name="captcha" type="text" class="form-control" placeholder="验证码">
+            {{create_captcha}}
           </div>
           <input type="submit" class="btn btn-default" value="登录"> <a href="/register">去注册</a>
         </form>

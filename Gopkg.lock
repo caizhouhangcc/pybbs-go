@@ -5,6 +5,7 @@
   name = "github.com/astaxie/beego"
   packages = [
     ".",
+    "cache",
     "config",
     "context",
     "context/param",
@@ -13,7 +14,8 @@
     "orm",
     "session",
     "toolbox",
-    "utils"
+    "utils",
+    "utils/captcha"
   ]
   revision = "bf5c5626ab429e66d88602e1ab1ab5fbf4629a01"
   version = "v1.9.2"
@@ -45,6 +47,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "0d18dc4682a17d7862e9d8e9a4c7734123ebcfb84ff522fc26dd0b75ada5aa92"
+  inputs-digest = "067b2939b856a0f96b6598217faac980cacadd219fae97c4adaf014fe9364bf6"
   solver-name = "gps-cdcl"
   solver-version = 1
