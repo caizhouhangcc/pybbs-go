@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"github.com/astaxie/beego"
 	"pybbs-go/filters"
 	"pybbs-go/models"
 	"strconv"
+
+	"github.com/astaxie/beego"
 )
 
 type PermissionController struct {
@@ -12,7 +13,7 @@ type PermissionController struct {
 }
 
 func (c *PermissionController) List() {
-	c.Data["PageTitle"] = "权限列表"
+	c.Data["PageTitle"] = "权限列表 | WhereSmile"
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Ctx)
 	pid, _ := strconv.Atoi(c.Ctx.Input.Query("pid"))
 	if pid > 0 {
@@ -28,7 +29,7 @@ func (c *PermissionController) List() {
 
 func (c *PermissionController) Add() {
 	beego.ReadFromRequest(&c.Controller)
-	c.Data["PageTitle"] = "添加权限"
+	c.Data["PageTitle"] = "添加权限 | WhereSmile"
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Ctx)
 	c.Data["Pid"] = c.Ctx.Input.Query("pid")
 	c.Data["ParantPermissions"] = models.FindPermissionsByPid(0)
@@ -61,7 +62,7 @@ func (c *PermissionController) Save() {
 
 func (c *PermissionController) Edit() {
 	beego.ReadFromRequest(&c.Controller)
-	c.Data["PageTitle"] = "编辑权限"
+	c.Data["PageTitle"] = "编辑权限 | WhereSmile"
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Ctx)
 	id, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	c.Data["Permission"] = models.FindPermissionById(id)

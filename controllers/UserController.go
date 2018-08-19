@@ -8,6 +8,7 @@ import (
 	"strconv"
 
 	"github.com/astaxie/beego"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type UserController struct {
@@ -80,20 +81,31 @@ func (c *UserController) UpdatePwd() {
 	flash := beego.NewFlash()
 	oldpwd, newpwd := c.Input().Get("oldpwd"), c.Input().Get("newpwd")
 	_, user := filters.IsLogin(c.Ctx)
-	if user.Password != oldpwd {
-		flash.Error("旧密码不正确")
-		flash.Store(&c.Controller)
-		c.Redirect("/user/setting", 302)
-		return
-	}
 	if len(newpwd) == 0 {
 		flash.Error("新密码都不能为空")
 		flash.Store(&c.Controller)
 		c.Redirect("/user/setting", 302)
 		return
 	}
-	user.Password = newpwd
+
+	if flag, _ := models.Login(user.Username, oldpwd); !flag {
+		flash.Error("旧密码不正确")
+		flash.Store(&c.Controller)
+		c.Redirect("/user/setting", 302)
+		return
+	}
+
+	// password
+	hash, err := bcrypt.GenerateFromPassword([]byte(newpwd), bcrypt.DefaultCost)
+	if err != nil {
+		flash.Error("新密码有毒，请重试一遍=。=")
+		flash.Store(&c.Controller)
+		c.Redirect("/user/setting", 302)
+		return
+	}
+	user.Password = string(hash)
 	models.UpdateUser(&user)
+
 	flash.Success("密码修改成功")
 	flash.Store(&c.Controller)
 	c.Redirect("/user/setting", 302)

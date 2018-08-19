@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/astaxie/beego/orm"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type User struct {
@@ -36,11 +37,19 @@ func FindUserByToken(token string) (bool, User) {
 	return err != orm.ErrNoRows, user
 }
 
-func Login(username string, password string) (bool, User) {
+func Login(username string, password string) (bool, *User) {
 	o := orm.NewOrm()
 	var user User
-	err := o.QueryTable(user).Filter("Username", username).Filter("Password", password).One(&user)
-	return err != orm.ErrNoRows, user
+	err := o.QueryTable(user).Filter("Username", username).One(&user)
+	if err == orm.ErrNoRows {
+		return false, nil
+	}
+	// password
+	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
+	if err != nil {
+		return false, nil
+	}
+	return true, &user
 }
 
 func FindUserByUserName(username string) (bool, User) {
