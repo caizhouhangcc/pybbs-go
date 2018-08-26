@@ -32,11 +32,6 @@
           </li>
           {{if .IsLogin}}
           <li>
-            <a href="/user/{{.UserInfo.Username}}">
-              {{.UserInfo.Nickname}}
-            </a>
-          </li>
-          <li>
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
                data-hover="dropdown">
               设置
@@ -50,6 +45,11 @@
               {{if haspermission .UserInfo.Id "permission:list"}}<li><a href="/permission/list">权限管理</a></li>{{end}}
               <li><a href="/logout">退出</a></li>
             </ul>
+          </li>
+          <li>
+            <a href="/user/{{.UserInfo.Username}}">
+              {{.UserInfo.Nickname}}
+            </a>
           </li>
           {{else}}
           <li><a href="/login">登录</a></li>

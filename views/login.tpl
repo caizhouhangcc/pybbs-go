@@ -15,9 +15,7 @@
             <input type="password" id="password" name="password" class="form-control" placeholder="密码">
           </div>
           <div class="form-group">
-            <label for="captcha">验证码</label><br/>
-            <input name="captcha" type="text" class="form-control" placeholder="验证码">
-            {{create_captcha}}
+            {{template "components/captcha.tpl"}}
           </div>
           <input type="submit" class="btn btn-default" value="登录"> <a href="/register">去注册</a>
         </form>

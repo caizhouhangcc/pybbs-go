@@ -1,10 +1,11 @@
 package filters
 
 import (
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/context"
 	"pybbs-go/models"
 	"regexp"
+
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/context"
 )
 
 func IsLogin(ctx *context.Context) (bool, models.User) {
@@ -32,7 +33,7 @@ var HasPermission = func(ctx *context.Context) {
 			}
 		}
 		if !flag {
-			ctx.WriteString("你没有权限访问这个页面")
+			ctx.WriteString("你没有权限访问这个页面，请联系管理员（这人很自恋，回复他最新的帖子即可=。=）")
 		}
 	}
 }
