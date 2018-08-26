@@ -1,6 +1,12 @@
 <div class="row">
   <div class="col-md-9">
     <div class="panel panel-default">
+      <div class="panel-heading">
+        <ul class="nav nav-pills">
+          <a href="/">WhereSmile</a> › 
+          <a href="/?s={{.Topic.Section.Id}}">{{.Topic.Section.Name}}</a>
+        </ul>
+      </div>
       <div class="panel-body topic-detail-header">
         <div class="media">
           <div class="media-body">
