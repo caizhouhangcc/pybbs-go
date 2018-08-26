@@ -2,7 +2,7 @@
   <div class="col-md-9">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <a href="/">主页</a> / 发布话题
+        <a href="/">WhereSmile</a> / 发布话题
       </div>
       <div class="panel-body">
         {{template "../components/flash_error.tpl" .}}
