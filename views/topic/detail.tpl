@@ -53,7 +53,8 @@
               <a href="/user/{{.User.Username}}">{{.User.Nickname}} </a>
               <span>{{.InTime | timeago}}</span>
               <span class="pull-right">
-                {{if haspermission $.UserInfo.Id "reply:delete"}}<a href="javascript:if(confirm('确定删除吗?')) location.href='/reply/delete/{{.Id}}'">删除</a>{{end}}
+                {{if haspermission $.UserInfo.Id "reply:delete"}}<a href="javascript:reply('{{.User.Username}}');">回复</a> | {{end}}
+                {{if haspermission $.UserInfo.Id "reply:delete"}}<a href="javascript:if(confirm('确定删除吗?')) location.href='/reply/delete/{{.Id}}'">删除</a> | {{end}}
                 {{if $.IsLogin}}<a href="javascript:up('{{.Id}}');"><span class="glyphicon glyphicon-thumbs-up"></span></a>{{end}}
                 <span id="up_{{.Id}}">{{.Up}}赞</span>
               </span>
@@ -75,7 +76,7 @@
         <form action="/reply/save" method="post">
           <input type="hidden" value="{{.Topic.Id}}" name="tid">
           <div class="form-group">
-            <textarea name="content" rows="5" class="form-control" placeholder="支持Markdown语法哦~"></textarea>
+            <textarea name="content" id="reply-textarea" rows="5" class="form-control" placeholder="支持Markdown语法哦~"></textarea>
           </div>
           <button type="submit" class="btn btn-default">回复</button>
         </form>
@@ -88,6 +89,10 @@
   </div>
 </div>
 <script type="text/javascript">
+  function reply(nick_name) {
+    $('#reply-textarea').focus();
+    $('#reply-textarea').val("@"+nick_name+" ");
+  }
   function up(id) {
     var isLogin = {{.IsLogin}};
     if(isLogin) {
