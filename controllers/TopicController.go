@@ -21,6 +21,12 @@ func (c *TopicController) Create() {
 	c.TplName = "topic/create.tpl"
 }
 
+func (c *TopicController) Preview() {
+	content := c.Input().Get("content")
+	c.Data["Content"] = content
+	c.TplName = "topic/preview.tpl"
+}
+
 func (c *TopicController) Save() {
 	flash := beego.NewFlash()
 	title, content, sid := c.Input().Get("title"), c.Input().Get("content"), c.Input().Get("sid")

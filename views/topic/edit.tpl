@@ -12,8 +12,13 @@
             <input type="text" class="form-control" id="title" name="title" value="{{.Topic.Title}}" placeholder="标题">
           </div>
           <div class="form-group">
-            <label for="title">内容</label>
+            <ul class="col-md-12 list-inline">
+              <li class="edit cur"><a href="#" tabindex="-1"><i class="glyphicon glyphicon-edit"></i> 编辑</a></li>
+              <li class="preview"><a href="#" title="预览" tabindex="-1"><i class="glyphicon glyphicon-eye-open"></i> 预览</a></li>
+              <!-- <li class="wide"><a href="/wide/playground" tabindex="-1" target="_blank" title="通过Wide编辑代码"><i class="glyphicon glyphicon-cloud"></i> Wide</a></li> -->
+            </ul>
             <textarea name="content" id="content" rows="15" class="form-control" placeholder="支持Markdown语法哦~">{{.Topic.Content}}</textarea>
+            <div class="content-preview"></div>
           </div>
           <div class="form-group">
             <label for="title">版块</label>
@@ -31,6 +36,8 @@
 </div>
 <script type="text/javascript">
   $(function () {
-    $("#sid").val('{{.Topic.Section.Id}}')
+    $("#sid").val('{{.Topic.Section.Id}}');
   });
 </script>
+
+{{template "topic/_preview.js.tpl"}}
