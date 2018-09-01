@@ -3,3 +3,6 @@ pybbs-go
 
 /logs/*
 !logs/.keep
+
+# vscode
+/.vscode
