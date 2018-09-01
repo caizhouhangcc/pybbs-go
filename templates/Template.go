@@ -18,10 +18,6 @@ func Markdown(content string) string {
 	rawBytes := []byte(utils.NoHtml(content))
 	markdownBytes := blackfriday.Run(
 		rawBytes,
-		// blackfriday.WithNoExtensions(),
-		// blackfriday.WithExtensions(blackfriday.HeadingIDs),
-		// blackfriday.WithExtensions(blackfriday.NoEmptyLineBeforeBlock),
-		// blackfriday.WithExtensions(blackfriday.Titleblock),
 		// blackfriday.WithExtensions(blackfriday.HardLineBreak),
 	)
 	return string(markdownBytes)
