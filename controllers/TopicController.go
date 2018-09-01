@@ -15,7 +15,7 @@ type TopicController struct {
 func (c *TopicController) Create() {
 	beego.ReadFromRequest(&c.Controller)
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Controller.Ctx)
-	c.Data["PageTitle"] = "发布话题 | WhereSmile"
+	c.Data["PageTitle"] = "发布话题" + SiteName
 	c.Data["Sections"] = models.FindAllSection()
 	c.Layout = "layout/layout.tpl"
 	c.TplName = "topic/create.tpl"
@@ -55,7 +55,7 @@ func (c *TopicController) Detail() {
 		c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Controller.Ctx)
 		topic := models.FindTopicById(tid)
 		models.IncrView(&topic) //查看+1
-		c.Data["PageTitle"] = topic.Title + " | WhereSmile"
+		c.Data["PageTitle"] = topic.Title + SiteName
 		c.Data["Topic"] = topic
 		c.Data["Replies"] = models.FindReplyByTopic(&topic)
 		c.Layout = "layout/layout.tpl"
@@ -71,7 +71,7 @@ func (c *TopicController) Edit() {
 	if id > 0 {
 		topic := models.FindTopicById(id)
 		c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Controller.Ctx)
-		c.Data["PageTitle"] = "编辑话题 | WhereSmile"
+		c.Data["PageTitle"] = "编辑话题" + SiteName
 		c.Data["Sections"] = models.FindAllSection()
 		c.Data["Topic"] = topic
 		c.Layout = "layout/layout.tpl"

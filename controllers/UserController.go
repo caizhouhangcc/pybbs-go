@@ -20,7 +20,7 @@ func (c *UserController) Detail() {
 	ok, user := models.FindUserByUserName(username)
 	if ok {
 		c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Ctx)
-		c.Data["PageTitle"] = "个人主页 | WhereSmile"
+		c.Data["PageTitle"] = "个人主页" + SiteName
 		c.Data["CurrentUserInfo"] = user
 		c.Data["Topics"] = models.FindTopicByUser(&user, 7)
 		c.Data["Replies"] = models.FindReplyByUser(&user, 7)
@@ -32,7 +32,7 @@ func (c *UserController) Detail() {
 func (c *UserController) ToSetting() {
 	beego.ReadFromRequest(&c.Controller)
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Ctx)
-	c.Data["PageTitle"] = "用户设置 | WhereSmile"
+	c.Data["PageTitle"] = "用户设置" + SiteName
 	c.Layout = "layout/layout.tpl"
 	c.TplName = "user/setting.tpl"
 }
@@ -137,7 +137,7 @@ func (c *UserController) UpdateAvatar() {
 }
 
 func (c *UserController) List() {
-	c.Data["PageTitle"] = "用户列表 | WhereSmile"
+	c.Data["PageTitle"] = "用户列表" + SiteName
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Ctx)
 	p, _ := strconv.Atoi(c.Ctx.Input.Query("p"))
 	if p == 0 {
@@ -150,7 +150,7 @@ func (c *UserController) List() {
 }
 
 func (c *UserController) Edit() {
-	c.Data["PageTitle"] = "配置角色 | WhereSmile"
+	c.Data["PageTitle"] = "配置角色" + SiteName
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Ctx)
 	id, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	if id > 0 {
@@ -170,7 +170,7 @@ func (c *UserController) Edit() {
 }
 
 func (c *UserController) Update() {
-	c.Data["PageTitle"] = "配置角色 | WhereSmile"
+	c.Data["PageTitle"] = "配置角色" + SiteName
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Ctx)
 	id, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	roleIds := c.GetStrings("roleIds")

@@ -16,6 +16,8 @@ import (
 // verification code
 var cpt *captcha.Captcha
 
+const SiteName = " | WhereSmile.com"
+
 func init() {
 	// use beego cache system store the captcha data
 	store := cache.NewMemoryCache()
@@ -28,7 +30,7 @@ type IndexController struct {
 
 //首页
 func (c *IndexController) Index() {
-	c.Data["PageTitle"] = "首页 | WhereSmile"
+	c.Data["PageTitle"] = "首页" + SiteName
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Controller.Ctx)
 	p, _ := strconv.Atoi(c.Ctx.Input.Query("p"))
 	if p == 0 {
@@ -53,7 +55,7 @@ func (c *IndexController) LoginPage() {
 		beego.ReadFromRequest(&c.Controller)
 		u := models.FindPermissionByUser(1)
 		beego.Debug(u)
-		c.Data["PageTitle"] = "登录 | WhereSmile"
+		c.Data["PageTitle"] = "登录" + SiteName
 		c.Layout = "layout/layout.tpl"
 		c.TplName = "login.tpl"
 	}
@@ -92,7 +94,7 @@ func (c *IndexController) RegisterPage() {
 		c.Redirect("/", 302)
 	} else {
 		beego.ReadFromRequest(&c.Controller)
-		c.Data["PageTitle"] = "注册 | WhereSmile"
+		c.Data["PageTitle"] = "注册" + SiteName
 		c.Layout = "layout/layout.tpl"
 		c.TplName = "register.tpl"
 	}
@@ -158,7 +160,7 @@ func (c *IndexController) Logout() {
 //关于
 func (c *IndexController) About() {
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Controller.Ctx)
-	c.Data["PageTitle"] = "关于 | WhereSmile"
+	c.Data["PageTitle"] = "关于" + SiteName
 	c.Layout = "layout/layout.tpl"
 	c.TplName = "about.tpl"
 }
