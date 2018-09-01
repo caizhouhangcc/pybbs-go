@@ -1,9 +1,10 @@
 package routers
 
 import (
-	"github.com/astaxie/beego"
 	"pybbs-go/controllers"
 	"pybbs-go/filters"
+
+	"github.com/astaxie/beego"
 )
 
 func init() {
@@ -18,6 +19,8 @@ func init() {
 	beego.InsertFilter("/topic/create", beego.BeforeRouter, filters.HasPermission)
 	beego.Router("/topic/create", &controllers.TopicController{}, "GET:Create")
 	beego.Router("/topic/create", &controllers.TopicController{}, "POST:Save")
+	beego.InsertFilter("/topic/preview", beego.BeforeRouter, filters.FilterUser)
+	beego.Router("/topic/preview", &controllers.TopicController{}, "POST:Preview")
 	beego.Router("/topic/:id([0-9]+)", &controllers.TopicController{}, "GET:Detail")
 	beego.InsertFilter("/topic/edit/:id([0-9]+)", beego.BeforeRouter, filters.HasPermission)
 	beego.Router("/topic/edit/:id([0-9]+)", &controllers.TopicController{}, "GET:Edit")
