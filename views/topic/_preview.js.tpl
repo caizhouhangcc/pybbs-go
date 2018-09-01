@@ -28,5 +28,6 @@
 <style type="text/css">
   .cur a{
     border:1px solid #ddd;
+    border-radius:8px;
   }
 </style>
