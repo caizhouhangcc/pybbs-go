@@ -1,10 +1,11 @@
 package models
 
 import (
-	"github.com/astaxie/beego/orm"
 	"pybbs-go/utils"
 	"strconv"
 	"time"
+
+	"github.com/astaxie/beego/orm"
 )
 
 type Topic struct {
@@ -24,6 +25,16 @@ func SaveTopic(topic *Topic) int64 {
 	o := orm.NewOrm()
 	id, _ := o.Insert(topic)
 	return id
+}
+
+func OldestTopic() *Topic {
+	o := orm.NewOrm()
+	var topic Topic
+	o.QueryTable(topic).OrderBy("id").One(&topic)
+	if 0 == topic.Id {
+		topic.Content = "关于页面取第一个Topic的内容，当前还没有发表任何topic，请发表一个吧！"
+	}
+	return &topic
 }
 
 func FindTopicById(id int) Topic {

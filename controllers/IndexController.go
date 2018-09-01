@@ -161,6 +161,8 @@ func (c *IndexController) Logout() {
 func (c *IndexController) About() {
 	c.Data["IsLogin"], c.Data["UserInfo"] = filters.IsLogin(c.Controller.Ctx)
 	c.Data["PageTitle"] = "关于" + SiteName
+	topic := models.OldestTopic()
+	c.Data["Topic"] = topic
 	c.Layout = "layout/layout.tpl"
 	c.TplName = "about.tpl"
 }
