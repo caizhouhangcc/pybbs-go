@@ -750,9 +750,9 @@
 }
 
 /*==========================*/
-* {
+/* * {
     border-radius: 0!important;
-}
+} */
 body {
     font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
 }
